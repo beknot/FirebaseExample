@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         progressDialog.dismiss();
+                        Intent i = new Intent(MainActivity.this,Dashboard.class);
+                        startActivity(i);
                         Toast.makeText(MainActivity.this,"Login success",Toast.LENGTH_LONG).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
