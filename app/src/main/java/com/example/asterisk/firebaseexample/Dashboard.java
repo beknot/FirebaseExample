@@ -1,10 +1,12 @@
 package com.example.asterisk.firebaseexample;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class Dashboard extends AppCompatActivity {
     EditText roll,name;
-    Button save;
+    Button save,storage;
     ListView listview;
     DatabaseReference databaseReference;
     ProgressDialog progressDialog;
@@ -36,10 +38,19 @@ public class Dashboard extends AppCompatActivity {
         roll = findViewById(R.id.roll);
         name = findViewById(R.id.name);
         save = findViewById(R.id.save);
+        storage = findViewById(R.id.storage);
         listview = findViewById(R.id.listview);
         progressDialog = new ProgressDialog(Dashboard.this);
         progressDialog.setMessage("Saving data ...");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("user");
+
+        storage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Dashboard.this,StorageActivity.class);
+                startActivity(i);
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
